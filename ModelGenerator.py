@@ -5,8 +5,8 @@ from WindowGenerator import WindowGenerator
 
 class ModelGenerator():
 
-    def __init__(self, input_width, label_width, shift, train_df, val_df, 
-            test_df, max_epochs, patience=10, label_columns=None):
+    def __init__(self, train_df, val_df, test_df, input_width, label_width, 
+                shift, max_epochs, label_columns=None, patience=10):
         self.max_epochs = max_epochs
         self.patience = patience
         self.input_width = input_width
@@ -27,9 +27,6 @@ class ModelGenerator():
             tf.keras.layers.Dense(units=32, activation='relu'),
             tf.keras.layers.Dense(units=1),])
         self.conv_model = conv_model
-
-    def print_window(self):
-        print(self.conv_window)
 
     def compile_and_fit(self):
         early_stopping = tf.keras.callbacks.EarlyStopping(
